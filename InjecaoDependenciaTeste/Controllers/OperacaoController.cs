@@ -6,14 +6,22 @@ namespace InjecaoDependenciaTeste.Controllers
     [Route("[controller]")]
     public class OperacaoController : ControllerBase
     {
-        public OperacaoController()
+        private readonly IServiceProvider _provider;
+        public OperacaoController(IServiceProvider provider)
         {
+            _provider = provider;
         }
 
-        [HttpGet("InjecaoViaAnotacao")]
-        public IActionResult Anotacao([FromServices] IOperacao operacao)
+        //[HttpGet("InjecaoViaAnotacao")]
+        //public IActionResult Anotacao([FromServices] IOperacao operacao)
+        //{
+        //    return Ok(operacao.Id);
+        //}
+
+        [HttpGet("InjecaoViaProvider")]
+        public IActionResult Provider()
         {
-            return Ok(operacao.Id);
+            return Ok(_provider.GetRequiredService<IOperacao>());
         }
     }
 }
