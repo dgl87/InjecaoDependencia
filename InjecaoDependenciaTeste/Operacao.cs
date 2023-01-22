@@ -1,6 +1,6 @@
 namespace InjecaoDependenciaTeste
 {
-    public class Operacao : IOperacao
+    public class Operacao : IOperacaoTransient, IOperacaoScoped, IOperacaoSingleton
     {
         public Operacao()
         {
@@ -12,5 +12,17 @@ namespace InjecaoDependenciaTeste
     public interface IOperacao
     {
         Guid Id { get; set; }
+    }
+    public interface IOperacaoTransient : IOperacao
+    {
+
+    }
+    public interface IOperacaoScoped : IOperacao
+    {
+
+    }
+    public interface IOperacaoSingleton : IOperacao
+    {
+
     }
 }
